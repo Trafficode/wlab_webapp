@@ -40,39 +40,59 @@ def wlabversion():
                        "date": Config.WLAB_COMMIT_DATE}
     return json.dumps(version_data)
 
-
-
-# --------------------------------------------------------------------------- /
-# {
-#     "A02938401234":
-#     {
-#         "description": "", 
-#         "longitude": 42.28, 
-#         "serie": {
-#             "Temperature": 1, 
-#             "Humidity": 2
-#         }, 
-#         "latitude": 25.22, 
-#         "timezone": "Europe/Warsaw", 
-#         "name": "Andromeda"
-#     },
-#     "142209325783":
-#     {
-#         "description": "", 
-#         "longitude": 42.89, 
-#         "serie": {
-#             "Temperature": 1, 
-#         }, 
-#         "latitude": 20.22, 
-#         "timezone": "Europe/Warsaw", 
-#         "name": "Trello"
-#     }
-# }
 @application.route("/restq/stations/desc")
 def stations_desc():
+    logger.info("stationsdesc()")   
+    return ipc_send_receive(Config.IPC_DP_SERVER_PORT, 
+                            'GET_DESC', 
+                            json.dumps({}), 
+                            1)
+
+@application.route("/restq/stations/newest")
+def stations_newest():
     logger.info("stationsdesc()")
-    stationsDesc = dataProvider.getStationsDesc()
-    return json.dumps(stationsDesc)
+    return ipc_send_receive(Config.IPC_DP_SERVER_PORT, 
+                            'GET_NEWEST', 
+                            json.dumps({}), 
+                            1)
+
+@application.route("/restq/stations/datatree")
+def stations_datatree():
+    logger.info("stations_datatree()")
+    return ipc_send_receive(Config.IPC_DP_SERVER_PORT, 
+                            'GET_DATATREE', 
+                            json.dumps({}), 
+                            1)
+
+@application.route("/restq/station/serie/daily/<string:uid_serie_date>")
+def station_dailyserie(uid_serie_date):
+    logger.info("station_dailyserie()")
+    param = json.loads(uid_serie_date)
+    logger.info("param; %s" % str(param))
+    return ipc_send_receive(Config.IPC_DP_SERVER_PORT, 
+                            'GET_DAILY', 
+                            uid_serie_date, 
+                            1)
+
+@application.route("/restq/station/serie/monthly/<string:uid_serie_date>")
+def station_monthlyserie(uid_serie_date):
+    logger.info("station_monthlyserie()")
+    param = json.loads(uid_serie_date)
+    logger.info("param; %s" % str(param))
+    return ipc_send_receive(Config.IPC_DP_SERVER_PORT, 
+                            'GET_MONTHLY', 
+                            uid_serie_date, 
+                            1)
+
+@application.route("/restq/station/serie/yearly/<string:uid_serie_date>")
+def station_yearlyserie(uid_serie_date):
+    logger.info("station_yearlyserie()")   
+    param = json.loads(uid_serie_date)
+    logger.info("param; %s" % str(param))
+    return ipc_send_receive(Config.IPC_DP_SERVER_PORT, 
+                            'GET_YEARLY', 
+                            uid_serie_date, 
+                            1)
 
 if __name__ == '__main__':
     logger.critical("run from directory %s" % str(os.getcwd()))

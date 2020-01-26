@@ -43,11 +43,9 @@ function _info_showVersion()
 		{
 			dataParsed = JSON.parse(data);
             var verRowEl = document.getElementById("info_verRow");       
-            wlabVerSplited = dataParsed["version"].split(' '); 
-            verRowEl.innerHTML = wlabVerSplited[0] + "." + wlabVerSplited[2];
-
+			verRowEl.innerHTML = dataParsed["version"];
             var dateRowEl = document.getElementById("info_dateRow");       
-            dateRowEl.innerHTML = dataParsed["date"].slice(7, -2);
+			dateRowEl.innerHTML = dataParsed["date"];
             console.log("/_info_showVersion");
         }
 	});
