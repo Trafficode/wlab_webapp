@@ -98,7 +98,7 @@ if __name__ == '__main__':
     logger.critical("run from directory %s" % str(os.getcwd()))
     logger.critical("VERSION: " + Config.WLAB_VERSION)
     application.run(host='0.0.0.0', debug=True, use_reloader=False)
-        
+
 #   ------------------------------------------------------------------------- /
 #    end of file
 #   ------------------------------------------------------------------------- /

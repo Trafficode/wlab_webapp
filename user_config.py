@@ -7,7 +7,7 @@
 class Config(object):
     DEVELOP = True
         
-    WLAB_VERSION     = "0.4.1"
+    WLAB_VERSION     = "1.4.1"
     WLAB_COMMIT_DATE = "2019-10-12"
 
     EXIT_CODE_REBOOT     = 10
@@ -15,6 +15,8 @@ class Config(object):
     EXIT_CODE_EXCEPTION  = 12
     
     IPC_DP_SERVER_PORT   = 2001
+    
 #   ------------------------------------------------------------------------- /
 #    end of file
 #   ------------------------------------------------------------------------- /
++
