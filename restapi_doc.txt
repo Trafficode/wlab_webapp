@@ -1,0 +1,161 @@
+# --------------------------------------------------------------------------- /
+/restq/stations/desc
+param example 
+	"{}"
+return example 
+{
+    "A02938401234":
+    {
+        "description": "", 
+        "longitude": 42.28, 
+        "serie": {
+            "Temperature": 1, 
+            "Humidity": 2
+        }, 
+        "latitude": 25.22, 
+        "timezone": "Europe/Warsaw", 
+        "name": "Andromeda"
+    },
+    "142209325783":
+    {
+        "description": "", 
+        "longitude": 42.89, 
+        "serie": {
+            "Temperature": 1, 
+        }, 
+        "latitude": 20.22, 
+        "timezone": "Europe/Warsaw", 
+        "name": "Trello"
+    }
+}
+# --------------------------------------------------------------------------- /
+/restq/stations/newest
+param example 
+	"{}"
+return example 
+{ 
+    'A02938401234': 
+    {
+        'Temperature': 
+        {   
+            u'f_max': 6.8, 
+            u'f_act': 0.1, 
+            u'i_act_ts': 1484527717, 
+            u'i_max_ts': 1484523337, 
+            u'f_min': -7.5, 
+            u'i_min_ts': 1484525797, 
+            u'i_counter': 11, 
+            u'f_avg_buff': -5.3
+        }, 
+        'Humidity': 
+        {
+            u'f_max': 90.4, 
+            u'f_act': 53.5, 
+            u'i_act_ts': 1484527717, 
+            u'i_max_ts': 1484522737, 
+            u'f_min': 1.8, 
+            u'i_min_ts': 1484521597, 
+            u'i_counter': 11, 
+            u'f_avg_buff': 637.8
+        }
+     }, 
+     '142209325783': { ...
+}
+# --------------------------------------------------------------------------- /
+/restq/stations/datatree
+param example 
+	"{}"
+return example 
+{
+    'A02938401234': 
+    {
+        'Temperature': 
+        {
+            '2017': 
+            {
+                'months': ['01'], 
+                '01': ['14', '15', '16']
+            }, 
+            'years': ['2017']
+        }, 
+        'Humidity': 
+        {
+            '2017': 
+            {
+                'months': ['01'], 
+                '01': ['14', '15', '16']
+            }, 
+            'years': ['2017']
+        }
+    }, 
+    '142209325783': 
+    {
+        'Temperature': 
+        {
+            '2017': 
+            {
+                'months': ['01'], 
+                '01': ['14', '15', '16']
+            }, 
+            'years': ['2017']
+        }, 
+        'Humidity': ... 
+    }
+}
+
+# --------------------------------------------------------------------------- /
+/restq/station/serie/daily/<string:uid_serie_date>
+param example
+{ uid:"0234294532AB", serie:"Temperature", date:"YYYY-MM-DD" } 
+
+return example 
+
+# --------------------------------------------------------------------------- /
+/restq/station/serie/monthly/<string:uid_serie_date>
+param example
+{ uid:"0234294532AB", serie:"Temperature", date:"YYYY-MM" } 
+
+return example 
+
+# --------------------------------------------------------------------------- /
+/restq/station/serie/yearly/<string:uid_serie_date>
+param example
+{ uid:"0234294532AB", serie:"Temperature", date:"YYYY" } 
+
+return example 
+
+# --------------------------------------------------------------------------- /
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
