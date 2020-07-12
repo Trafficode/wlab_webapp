@@ -7,8 +7,8 @@
 
 class Globals(object):
     
-    WLAB_VERSION     = "1.6"
-    WLAB_COMMIT_DATE = '2020-03-07'
+    WLAB_VERSION     = '1.8'
+    WLAB_COMMIT_DATE = '2020-07-12'
     
     RELEASE_CONFIG_FILE  = '/home/wlab/weatherlab/config/wlabwebapp.json'
     
@@ -16,7 +16,7 @@ class Globals(object):
     EXIT_CODE_EXIT       = 11
     EXIT_CODE_EXCEPTION  = 12
     
-    IPC_DP_SERVER_PORT   = 2001
+    IPC_SERVER = '/home/wlab/weatherlab/config/sock'
     
 #   ------------------------------------------------------------------------- /
 #    end of file
