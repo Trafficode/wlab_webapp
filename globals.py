@@ -14,10 +14,7 @@ class Globals(object):
     
     EXIT_CODE_REBOOT     = 10
     EXIT_CODE_EXIT       = 11
-    EXIT_CODE_EXCEPTION  = 12
-    
-    IPC_SERVER = '/home/wlab/weatherlab/config/sock'
-    
+    EXIT_CODE_EXCEPTION  = 12    
 #   ------------------------------------------------------------------------- /
 #    end of file
 #   ------------------------------------------------------------------------- /

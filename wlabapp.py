@@ -17,35 +17,28 @@ if os.path.exists(Globals.RELEASE_CONFIG_FILE):
     config_f = open(Globals.RELEASE_CONFIG_FILE, 'r')
     Config = json.load(config_f)
     config_f.close()
-    
-    logging.basicConfig(
-        format='%(asctime)s - %(name)-16.16s - %(levelname)8s - %(message)s',
-        atefmt='%m/%d/%Y %I:%M:%S %p',
-    )
 else:
     # develop mode
     Config = {
-        'logpath': 'log',
-    } 
-    if not os.path.exists(Config['logpath']):
-        os.mkdir(Config['logpath'])
- 
-    log_file = os.path.join(Config['logpath'], 'wlabapp.log')    
-    logging.basicConfig(
-        level=logging.INFO,
-        format='%(asctime)s - %(name)-16.16s - %(levelname)8s - %(message)s',
-        atefmt='%m/%d/%Y %I:%M:%S %p',
-        handlers=[ 
-            logging.FileHandler(log_file)
-        ]
-    )
+        "logging_path": "../../log/",
+        "socket_file_path": "../sock"
+    }
+    
+if not os.path.exists(Config['logging_path']):
+    os.mkdir(Config['logging_path'])
+
+logging.basicConfig(
+    filename = os.path.join(Config['logging_path'], 'wlabapp.log'), 
+    format = '%(asctime)s - %(name)-24.24s - %(levelname)8s - %(message)s', 
+    atefmt = '%m/%d/%Y %I:%M:%S %p'
+)
+
+from flask import Flask
+from flask import render_template
 
 logger = logging.getLogger('wlabapp')
 logger.setLevel(logging.INFO)
- 
-from flask import Flask
-from flask import render_template
- 
+
 application = Flask(__name__)
 @application.route('/')
 @application.route('/index')
@@ -63,7 +56,7 @@ def wlabversion():
 @application.route("/restq/stations/desc")
 def stations_desc():
     logger.info("stationsdesc()")   
-    return ipc_send_receive(Globals.IPC_SERVER, 
+    return ipc_send_receive(Config['socket_file_path'], 
                             'GET_DESC', 
                             json.dumps({}), 
                             1)
@@ -71,7 +64,7 @@ def stations_desc():
 @application.route("/restq/stations/newest")
 def stations_newest():
     logger.info("stationsdesc()")
-    return ipc_send_receive(Globals.IPC_SERVER, 
+    return ipc_send_receive(Config['socket_file_path'], 
                             'GET_NEWEST', 
                             json.dumps({}), 
                             1)
@@ -79,7 +72,7 @@ def stations_newest():
 @application.route("/restq/stations/datatree")
 def stations_datatree():
     logger.info("stations_datatree()")
-    return ipc_send_receive(Globals.IPC_SERVER, 
+    return ipc_send_receive(Config['socket_file_path'], 
                             'GET_DATATREE', 
                             json.dumps({}), 
                             1)
@@ -88,8 +81,8 @@ def stations_datatree():
 def station_dailyserie(uid_serie_date):
     logger.info("station_dailyserie()")
     param = json.loads(uid_serie_date)
-    logger.info("param; %s" % str(param))
-    return ipc_send_receive(Globals.IPC_SERVER, 
+    logger.info("param <%s>" % str(param))
+    return ipc_send_receive(Config['socket_file_path'], 
                             'GET_DAILY', 
                             uid_serie_date, 
                             1)
@@ -98,8 +91,8 @@ def station_dailyserie(uid_serie_date):
 def station_monthlyserie(uid_serie_date):
     logger.info("station_monthlyserie()")
     param = json.loads(uid_serie_date)
-    logger.info("param; %s" % str(param))
-    return ipc_send_receive(Globals.IPC_SERVER, 
+    logger.info("param <%s>" % str(param))
+    return ipc_send_receive(Config['socket_file_path'], 
                             'GET_MONTHLY', 
                             uid_serie_date, 
                             1)
@@ -108,11 +101,11 @@ def station_monthlyserie(uid_serie_date):
 def station_yearlyserie(uid_serie_date):
     logger.info("station_yearlyserie()")   
     param = json.loads(uid_serie_date)
-    logger.info("param; %s" % str(param))
-    return ipc_send_receive(Globals.IPC_SERVER, 
+    logger.info("param <%s>" % str(param))
+    return ipc_send_receive(Config['socket_file_path'], 
                             'GET_YEARLY', 
                             uid_serie_date, 
-                            1)
+                            4)
   
 if __name__ == '__main__':
     logger.critical("run from directory %s" % str(os.getcwd()))
