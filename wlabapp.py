@@ -28,7 +28,7 @@ if not os.path.exists(Config['logging_path']):
     os.mkdir(Config['logging_path'])
 
 logging.basicConfig(
-    filename = os.path.join(Config['logging_path'], 'wlabapp.log'), 
+    filename = os.path.join(Config['logging_path'], 'wlab_webapp.log'), 
     format = '%(asctime)s - %(name)-24.24s - %(levelname)8s - %(message)s', 
     atefmt = '%m/%d/%Y %I:%M:%S %p'
 )
